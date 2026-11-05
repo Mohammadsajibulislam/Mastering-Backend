@@ -1,6 +1,5 @@
 # Mongoose and Schema — MongoDB-সহ Notes backend
 
-
 > **এখনকার অবস্থা:** এটি শেখার project। Schema-তে validation সীমিত, error handling ও authentication নেই। `server.js`-এ port hard-coded, এবং database connection সফল হওয়ার আগে server listen শুরু হতে পারে। তাই এটিকে production-ready বা ইতিমধ্যে deployed ধরে নিও না।
 
 ## দুই project-এর সম্পর্ক

@@ -15,6 +15,48 @@ html{
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+.home-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: 100%;
+  background-color: #f0f2f5;
+}
+
+.home-button {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  color: white;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.home-button:hover {
+  background-color: #388e3c;
+  transform: translateY(-2px);
+}
+
+.home-button:focus-visible {
+  outline: 3px solid #1b5e20;
+  outline-offset: 3px;
+}
+
+.home-button svg {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
 .create-post-section {
   display: flex;
   flex-direction: column;

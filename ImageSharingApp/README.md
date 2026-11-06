@@ -4,12 +4,12 @@
 
 এই folder-এ একটি ছোট full-stack app আছে: React form থেকে image ও caption পাঠানো হয়, Express backend image-টি ImageKit-এ upload করে, MongoDB-তে image URL ও caption save করে, এবং Feed page-এ post-গুলো দেখায়।
 
-> **নামের বিষয়ে:** folder-এর নাম `Authentication`, কিন্তু বর্তমান code-এ login, register, password, session বা token-based authentication নেই। এখনকার কাজটি image post create ও feed দেখানো। তাই README-তে প্রকৃত feature অনুযায়ী নাম দেওয়া হয়েছে; authentication এই project-এর পরের শেখার ধাপ হতে পারে।
+> কিন্তু বর্তমান code-এ login, register, password, session বা token-based authentication নেই। এখনকার কাজটি image post create ও feed দেখানো। তাই README-তে প্রকৃত feature অনুযায়ী নাম দেওয়া হয়েছে; authentication এই project-এর পরের শেখার ধাপ হতে পারে।
 
 ## আগের দুই project-এর সঙ্গে সম্পর্ক
 
-1. [`REST API` project](../REST%20API/README.md)-এ Express route, HTTP method ও Postman দিয়ে CRUD শেখা হয়েছে; data ছিল memory-র array-তে।
-2. [`Mongoose and Schema` project](../Mongoose%20and%20Schema/readme.md)-এ Express API-র সঙ্গে Mongoose/MongoDB দিয়ে Notes সংরক্ষণ শেখা হয়েছে।
+1. [`REST API` project](<../REST%20API/README.md>)-এ Express route, HTTP method ও Postman দিয়ে CRUD শেখা হয়েছে; data ছিল memory-র array-তে।
+2. [`Mongoose and Schema` project](<../Mongoose%20and%20Schema/readme.md>)-এ Express API-র সঙ্গে Mongoose/MongoDB দিয়ে Notes সংরক্ষণ শেখা হয়েছে।
 3. এই project-এ সেই backend ধারণার সঙ্গে React frontend, browser থেকে multipart image upload, Multer, ImageKit cloud storage এবং CORS যোগ হয়েছে।
 
 ```text
@@ -50,7 +50,7 @@ Authentication/
     ├── vite.config.js              # Vite React plugin
     └── src/
         ├── main.jsx                # React app mount
-        ├── App.jsx                 # /create-post ও /feed routes
+        ├── App.jsx                 # /, /create-post ও /feed routes
         ├── index.css               # page ও post-card styling
         └── pages/
             ├── CreatePost.jsx      # form, Axios POST, feed-এ navigate
@@ -70,7 +70,7 @@ Authentication/
 ### Frontend
 
 - **`src/main.jsx`** React app-কে HTML-এর `root` element-এ render করে।
-- **`src/App.jsx`** React Router দিয়ে `/create-post` ও `/feed` page নির্বাচন করে। অন্য path-এর জন্য route নেই।
+- **`src/App.jsx`** React Router দিয়ে `/`, `/create-post` ও `/feed` page নির্বাচন করে। Homepage-এ Feed ও Create Post-এ যাওয়ার icon button আছে।
 - **`CreatePost.jsx`** form submit আটকায়, `FormData` তৈরি করে Axios দিয়ে `/create-post`-এ পাঠায়; সফল হলে `/feed`-এ যায়।
 - **`Feed.jsx`** page mount হলে `/posts` থেকে post আনে এবং image ও caption দেখায়। শুরুতে একটি sample post state-এ আছে; API request সফল হলে response দিয়ে সেটি প্রতিস্থাপিত হয়।
 - **`index.css`** create form, feed ও post card-এর basic style-গুলো রাখে։
@@ -80,25 +80,25 @@ Authentication/
 
 ### Backend `Backend/package.json`
 
-| Package | ব্যবহার |
-|---|---|
-| `express` | HTTP server ও API route তৈরি |
-| `mongoose` | MongoDB connection, schema, model ও query |
-| `dotenv` | `.env` থেকে environment variable load |
-| `cors` | browser frontend থেকে cross-origin API call অনুমতি |
-| `multer` | `multipart/form-data` file upload parse; এখানে memory storage |
-| `@imagekit/nodejs` | ImageKit-এ image upload |
+| Package              | ব্যবহার                                                       |
+| -------------------- | -------------------------------------------------------------------- |
+| `express`          | HTTP server ও API route তৈরি                                    |
+| `mongoose`         | MongoDB connection, schema, model ও query                           |
+| `dotenv`           | `.env` থেকে environment variable load                          |
+| `cors`             | browser frontend থেকে cross-origin API call অনুমতি         |
+| `multer`           | `multipart/form-data` file upload parse; এখানে memory storage |
+| `@imagekit/nodejs` | ImageKit-এ image upload                                             |
 
 ### Frontend `Frontend/package.json`
 
-| Package | ব্যবহার |
-|---|---|
-| `react`, `react-dom` | UI component তৈরি ও browser-এ render |
-| `react-router-dom` | `/create-post`, `/feed` client-side routes |
-| `axios` | backend HTTP request পাঠানো |
-| `vite` | frontend development server ও production build |
-| `@vitejs/plugin-react` | Vite-এ React support |
-| `eslint` ও config/plugins | JavaScript/React lint |
+| Package                      | ব্যবহার                                  |
+| ---------------------------- | ----------------------------------------------- |
+| `react`, `react-dom`     | UI component তৈরি ও browser-এ render      |
+| `react-router-dom`         | `/create-post`, `/feed` client-side routes  |
+| `axios`                    | backend HTTP request পাঠানো               |
+| `vite`                     | frontend development server ও production build |
+| `@vitejs/plugin-react`     | Vite-এ React support                           |
+| `eslint` ও config/plugins | JavaScript/React lint                           |
 
 Package-গুলো আগেই `package.json`-এ declare করা আছে। আলাদা করে সব install করার বদলে দুই project folder-এ `npm install` চালাও। Postman ঐচ্ছিক API testing tool, npm dependency নয়।
 
@@ -147,21 +147,37 @@ Vite terminal-এ যে local URL দেখায় সেটি browser-এ খ�
 ## Browser-এ app ব্যবহার
 
 1. Backend ও frontend—দুটিই চালু রাখো।
-2. `http://localhost:5173/create-post` খোলো।
-3. Image select করে caption লিখে Submit চাপো।
-4. Browser form-কে `FormData` করে backend-এ পাঠায়।
-5. Backend ImageKit-এ image upload করে URL পায়, তারপর URL ও caption MongoDB-তে save করে।
-6. সফল হলে frontend `/feed` page-এ যায়।
-7. Feed `/posts` endpoint call করে MongoDB-তে থাকা post-গুলো দেখায়।
+2. Vite যে URL দেখায়, সাধারণত `http://localhost:5173`, সেটি খোলো।
+3. Homepage-এর grid icon চাপলে `/feed` page এবং `+` icon চাপলে `/create-post` page খুলবে।
+4. Create Post page-এ image select করে caption লিখে Submit চাপো।
+5. Browser form-কে `FormData` করে backend-এ পাঠায়।
+6. Backend ImageKit-এ image upload করে URL পায়, তারপর URL ও caption MongoDB-তে save করে।
+7. সফল হলে frontend `/feed` page-এ যায়; Feed `/posts` endpoint call করে post-গুলো দেখায়।
+
+## Homepage button ও route কীভাবে কাজ করে?
+
+`src/App.jsx`-এর `Home` component homepage-এর দুইটি icon button দেখায়। Button-এ লেখা নেই, তাই `aria-label` screen reader-কে button-এর কাজ জানায়; SVG-গুলো grid ও plus icon আঁকে।
+
+`useNavigate` হলো `react-router-dom`-এর hook। `Home`-এর ভেতরে `const navigate = useNavigate()` দিয়ে পাওয়া function-টি button-এর `onClick` handler-এ ব্যবহার করা হয়েছে:
+
+```jsx
+onClick={() => navigate('/feed')}
+```
+
+Click হলে browser app-এর `/feed` route-এ যায়। অন্য button-টি একইভাবে `navigate('/create-post')` চালায়। `useNavigate()` অবশ্যই `<Router>`-এর ভেতরে থাকা component-এ ব্যবহার করতে হয়; এখানে `Home`-কে `<Routes>`-এর `element` হিসেবে render করায় সেটি Router context পায়।
+
+`<Route path='/' element={<Home />} />` বলে `/` URL-এ `Home` দেখাতে হবে। একইভাবে `/feed`-এ `Feed`, আর `/create-post`-এ `CreatePost` দেখানো হয়। React Router-এর client-side navigation হওয়ায় page বদলাতে পুরো browser document reload হয় না।
+
+`src/index.css`-এ `.home-section` button-গুলোকে মাঝখানে রাখে, `.home-button`-এ আকার, রং ও hover style দেয়, আর `:focus-visible` keyboard দিয়ে button-এ পৌঁছালে focus outline দেখায়।
 
 ## API ও Postman দিয়ে পরীক্ষা
 
 API base URL: `http://localhost:3000`
 
-| কাজ | Method | Endpoint | সফল status |
-|---|---|---|---:|
-| Image ও caption-সহ post তৈরি | `POST` | `/create-post` | `201` |
-| সব post পড়া | `GET` | `/posts` | `200` |
+| কাজ                              | Method   | Endpoint         | সফল status |
+| ----------------------------------- | -------- | ---------------- | ------------: |
+| Image ও caption-সহ post তৈরি | `POST` | `/create-post` |       `201` |
+| সব post পড়া                    | `GET`  | `/posts`       |       `200` |
 
 ### `POST /create-post`
 
@@ -211,16 +227,16 @@ GET http://localhost:3000/posts
 
 ## আগের project-গুলোর থেকে কী নতুন?
 
-| বিষয় | REST API | Mongoose and Schema | এই project |
-|---|---|---|---|
-| Client | Postman | Postman | React page এবং Postman |
-| Data | process memory | MongoDB Notes | MongoDB post metadata |
-| File upload | নেই | নেই | Multer দিয়ে image request নেওয়া |
-| Image storage | নেই | নেই | ImageKit |
-| Browser API call | নেই | নেই | Axios |
-| UI routing | নেই | নেই | React Router |
-| CORS | প্রয়োজন হয়নি | প্রয়োজন হয়নি | Frontend/backend আলাদা origin হওয়ায় চালু |
-| Authentication | নেই | নেই | নেই—folder-এর নাম দেখে ধরে নেওয়া যাবে না |
+| বিষয়         | REST API                | Mongoose and Schema     | এই project                                                        |
+| ---------------- | ----------------------- | ----------------------- | ------------------------------------------------------------------- |
+| Client           | Postman                 | Postman                 | React page এবং Postman                                           |
+| Data             | process memory          | MongoDB Notes           | MongoDB post metadata                                               |
+| File upload      | নেই                  | নেই                  | Multer দিয়ে image request নেওয়া                            |
+| Image storage    | নেই                  | নেই                  | ImageKit                                                            |
+| Browser API call | নেই                  | নেই                  | Axios                                                               |
+| UI routing       | নেই                  | নেই                  | React Router                                                        |
+| CORS             | প্রয়োজন হয়নি | প্রয়োজন হয়নি | Frontend/backend আলাদা origin হওয়ায় চালু              |
+| Authentication   | নেই                  | নেই                  | নেই—folder-এর নাম দেখে ধরে নেওয়া যাবে না |
 
 ## শেখার সীমাবদ্ধতা ও উন্নতির জায়গা
 
@@ -237,7 +253,7 @@ GET http://localhost:3000/posts
 9. **Buffer log হচ্ছে:** `storage.service.js` upload-এর আগে `buffer` console-এ print করে। Production-এ uploaded file-এর bytes log করা উচিত নয়।
 10. **Port/API URL hard-coded:** frontend API URL `http://localhost:3000`; backend port `3000`-এ hard-coded। Deploy-এ environment-specific configuration লাগবে।
 11. **Automated tests নেই:** backend `npm test` placeholder; frontend-এ test script নেই। Frontend-এর `npm run lint` ও `npm run build` script আছে।
-12. **UI সীমিত:** `/` বা অচেনা path-এর route নেই; user experience এখন শেখার demo-র পর্যায়ে।
+12. **UI সীমিত:** homepage-এ এখন শুধু Feed ও Create Post navigation button আছে; অচেনা path-এর জন্য 404 page নেই। User experience এখন শেখার demo-র পর্যায়ে।
 
 ## Deployment শেখার checklist
 
